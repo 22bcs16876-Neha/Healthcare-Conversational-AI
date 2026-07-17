@@ -1,0 +1,23 @@
+openapi: 3.0.1
+info:
+  title: Get Claim History
+  version: "1.0.0"
+servers:
+  - url: $env_var
+paths:
+  /claims/history/{member_id}:
+    get:
+      operationId: get_claim_history
+      summary: Get Claim History
+      parameters:
+        - name: member_id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: MEM1001
+      responses:
+        "200":
+          description: Claim history retrieved.
+        "404":
+          description: Member not found.

@@ -1,0 +1,7 @@
+{
+  "name": "36bc5ad2-e942-48a7-9cf5-edc2d86462f9",
+  "displayName": "status",
+  "llmCriteria": {
+    "prompt": "Did the agent get consent, verify the caller\u0027s identity, and return the claim status?"
+  }
+}

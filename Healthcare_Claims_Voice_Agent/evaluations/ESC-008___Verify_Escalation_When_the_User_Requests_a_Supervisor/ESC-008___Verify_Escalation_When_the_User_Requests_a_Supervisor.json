@@ -1,0 +1,441 @@
+{
+  "name": "c3cd0c7c-b4c7-4187-8969-46781e128d4e",
+  "displayName": "ESC-008 – Verify Escalation When the User Requests a Supervisor",
+  "tags": ["Escalation_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hi"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, policy, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "i want to check claim status"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-1a715beb-13f5-41e2-ba2e-828ca5d969ab",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-1a715beb-13f5-41e2-ba2e-828ca5d969ab",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "requested_intent": "claim_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yes"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-95f95f49-4f52-4467-a2d6-df6ebbb81775",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-95f95f49-4f52-4467-a2d6-df6ebbb81775",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "I can help with that. First, please tell me your member ID."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM1001"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-4349d559-4fed-4a3d-a18d-47ff8b2d7586",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-4349d559-4fed-4a3d-a18d-47ff8b2d7586",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Member verified successfully.",
+              "success": true
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-7d7cf73d-aad7-469e-9e45-b94d5fd43c33",
+            "tool": "update_auth_state",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated_member_id": "MEM1001"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-7d7cf73d-aad7-469e-9e45-b94d5fd43c33",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": false,
+                "authenticated_member_id": "MEM1001",
+                "member_name": null,
+                "saved": {
+                  "authenticated_member_id": "MEM1001"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Thank you. I have your member ID as MEM1001. Now, what is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "15 april, 1985"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Great. Next, could you please provide your 5-digit ZIP code?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "10001"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "And what are the last 4 digits of your SSN?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1234"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-02519058-62fb-47c7-9cab-2f6e4805b142",
+            "args": {
+              "dob": "1985-04-15",
+              "last4SSN": "1234",
+              "memberId": "MEM1001",
+              "zipCode": "10001"
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-02519058-62fb-47c7-9cab-2f6e4805b142",
+            "response": {
+              "code": "AUTHENTICATED",
+              "data": {
+                "email": "john.smith@email.com",
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "phone": "+1-212-555-1001",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Authentication successful.",
+              "success": true
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-95db2096-358f-4ed3-94fa-6c8acadb984f",
+            "tool": "update_auth_state",
+            "args": {
+              "authenticated": true,
+              "member_id": "MEM1001",
+              "member_name": "John Smith"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated": true,
+            "member_name": "John Smith"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-95db2096-358f-4ed3-94fa-6c8acadb984f",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": true,
+                "authenticated_member_id": "MEM1001",
+                "member_name": "John Smith",
+                "saved": {
+                  "authenticated": true,
+                  "authenticated_member_id": "MEM1001",
+                  "member_name": "John Smith"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Thank you, your identity has been verified successfully. Let me transfer you to a claims specialist."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Claims Journey Agent",
+            "displayName": "Claims Journey Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-b8ba28be-4520-4bb0-b00e-c500e0d0d9d6",
+            "args": {
+              "memberId": "MEM1001"
+            },
+            "displayName": "get_claim_status_member",
+            "toolsetTool": {
+              "toolset": "get_claim_status_member",
+              "toolId": "get_claim_status"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-b8ba28be-4520-4bb0-b00e-c500e0d0d9d6",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "amount": 230.0,
+                "claimId": "CLM1031",
+                "claimStatusHistory": [{
+                  "status": "Submitted",
+                  "timestamp": "2026-07-10T16:59:40.449468+00:00"
+                }],
+                "claimType": "Dental",
+                "createdAt": "2026-07-10T16:59:40.449468+00:00",
+                "diagnosisCode": "W10",
+                "lastUpdated": "2026-07-10T16:59:40.449468+00:00",
+                "memberId": "MEM1001",
+                "provider": "City Healthcare",
+                "serviceDate": "2005-07-02",
+                "status": "Submitted",
+                "submittedDate": "2026-07-10",
+                "updatedAt": "2026-07-10T16:59:40.449468+00:00"
+              },
+              "message": "Claim retrieved successfully.",
+              "success": true
+            },
+            "displayName": "get_claim_status_member",
+            "toolsetTool": {
+              "toolset": "get_claim_status_member",
+              "toolId": "get_claim_status"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Claims Journey Agent",
+            "chunks": [{
+              "text": "I can help with that. I found one claim on file. It is a dental claim for 230 dollars, and the status is currently submitted. Is there anything else about your claims I can help with?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "i want to talk to supervidor"
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Root agent",
+            "displayName": "Root agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Human Escalation Agent",
+            "displayName": "Human Escalation Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Human Escalation Agent",
+            "chunks": [{
+              "text": "Thank you for your patience. I\u0027m connecting you with a representative who can help you further. Please stay on the line and someone will be with you shortly."
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

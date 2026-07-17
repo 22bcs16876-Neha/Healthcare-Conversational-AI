@@ -1,0 +1,184 @@
+{
+  "name": "c58125d5-94f3-4817-a69f-25a9b5051e89",
+  "displayName": "F-011 – Verify Member ID Validation with a Valid Member ID",
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hello"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "I want to check my claim status"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-066a679c-48ba-4a8f-a95e-96c7d0f50809",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-066a679c-48ba-4a8f-a95e-96c7d0f50809",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "requested_intent": "claim_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yes"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-02d45a57-0611-46be-9c52-bc8aa0392f09",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-02d45a57-0611-46be-9c52-bc8aa0392f09",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Please tell me your member ID."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM1001"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-6304ce73-96d5-49f4-be8f-e4e553a45566",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-6304ce73-96d5-49f4-be8f-e4e553a45566",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Member verified successfully.",
+              "success": true
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "What is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

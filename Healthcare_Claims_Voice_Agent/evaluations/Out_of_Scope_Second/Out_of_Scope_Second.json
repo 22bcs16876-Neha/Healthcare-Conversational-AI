@@ -1,0 +1,30 @@
+{
+  "name": "5cc2f302-2f43-4184-8822-9ee3185d196e",
+  "displayName": "Out of Scope Second",
+  "tags": ["Scenario_Based_Test_Cases"],
+  "scenario": {
+    "task": "Ask about billing.",
+    "scenarioExpectations": [{
+      "toolExpectation": {
+        "expectedToolCall": {
+          "tool": "update_root_state",
+          "args": {
+            "increment_outofscope_attempts": true
+          },
+          "displayName": "update_root_state"
+        },
+        "mockToolResponse": {
+          "tool": "update_root_state",
+          "response": {
+            "consent_attempts": 0.0,
+            "outofscope_attempts": 2.0,
+            "unclear_attempts": 0.0
+          },
+          "displayName": "update_root_state"
+        }
+      }
+    }],
+    "maxTurns": 10,
+    "userGoalBehavior": "USER_GOAL_IGNORED"
+  }
+}

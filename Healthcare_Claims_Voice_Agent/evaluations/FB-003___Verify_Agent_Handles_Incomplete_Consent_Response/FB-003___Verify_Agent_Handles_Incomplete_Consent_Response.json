@@ -1,0 +1,111 @@
+{
+  "name": "6d2357fc-a94e-4607-acb1-b230e1cc7dc1",
+  "displayName": "FB-003 – Verify Agent Handles Incomplete Consent Response",
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "Hello, I want to check my claim status."
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-9dfd3d41-eecb-4751-92cb-743d20c8118f",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-9dfd3d41-eecb-4751-92cb-743d20c8118f",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "requested_intent": "claim_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Understood, I can help with that. This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "I..."
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-3d913da7-e7f9-43dd-8498-8c31b81d65c5",
+            "tool": "update_root_state",
+            "args": {
+              "increment_unclear_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "unclear_attempts": 1.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-3d913da7-e7f9-43dd-8498-8c31b81d65c5",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "unclear_attempts": 1.0
+                },
+                "unclear_attempts": 1.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Could you tell me what you\u0027d like help with, for example claims, eligibility, benefits, policy, or provider information?"
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

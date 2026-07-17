@@ -1,0 +1,11 @@
+{
+  "name": "3c6e8240-eda0-4f88-b1e8-d1718ef879cc",
+  "displayName": "providers_city",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/providers_city/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

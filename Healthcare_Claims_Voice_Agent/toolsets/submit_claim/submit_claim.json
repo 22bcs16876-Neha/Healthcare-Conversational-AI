@@ -1,0 +1,11 @@
+{
+  "name": "afdcd02e-f5cc-4124-a5d0-4a5e84651f49",
+  "displayName": "submit_claim",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/submit_claim/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "da1c92e4-233a-456a-a6ea-b2abe9a5f297",
+  "displayName": "Unsupported request declined",
+  "llmCriteria": {
+    "prompt": "When the caller asked for something outside claims, eligibility, benefits, provider, or preauthorization, did the agent politely decline and say it can only help with those services, without inventing an answer?"
+  }
+}

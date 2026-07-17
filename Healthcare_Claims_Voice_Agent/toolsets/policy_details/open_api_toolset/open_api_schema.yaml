@@ -1,0 +1,25 @@
+openapi: 3.0.1
+info:
+  title: Get Policy
+  version: 1.0.0
+servers:
+- url: $env_var
+paths:
+  /policy/{member_id}:
+    get:
+      operationId: get_policy
+      summary: Get Policy
+      description: Returns the member's policy details including policy number, plan,
+        and coverage.
+      parameters:
+      - name: member_id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: MEM1001
+      responses:
+        '200':
+          description: Policy details.
+        '404':
+          description: Policy not found.

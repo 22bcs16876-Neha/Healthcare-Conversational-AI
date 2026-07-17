@@ -1,0 +1,16 @@
+{
+  "name": "6e99799e-3bcb-4d77-b26e-369826f8aac3",
+  "displayName": "Provider and PreAuthorization Journey Agent",
+  "instruction": "agents/Provider_and_PreAuthorization_Journey_Agent/instruction.txt",
+  "tools": ["end_session", "update_roundtrip_state"],
+  "toolsets": [{
+    "toolset": "get_preauthorization",
+    "toolIds": ["get_preauthorization"]
+  }, {
+    "toolset": "provider_lookup",
+    "toolIds": ["provider_lookup"]
+  }, {
+    "toolset": "search_providers",
+    "toolIds": ["search_providers"]
+  }]
+}

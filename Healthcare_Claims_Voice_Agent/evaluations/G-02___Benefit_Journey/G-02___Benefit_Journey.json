@@ -1,0 +1,491 @@
+{
+  "name": "f188baff-40aa-48a4-824c-4409ff85e951",
+  "displayName": "G-02 – Benefit Journey",
+  "tags": ["Golden_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hi"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, policy, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "i want to check benefits"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-77743df3-3f1f-46ce-bae3-af72fdadf504",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "benefits_inquiry"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-77743df3-3f1f-46ce-bae3-af72fdadf504",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "benefits_inquiry",
+                "saved": {
+                  "requested_intent": "benefits_inquiry"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "benefits_inquiry"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yess"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-9dbcdec1-4e4e-4789-a117-d4f538da5b90",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-9dbcdec1-4e4e-4789-a117-d4f538da5b90",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "benefits_inquiry",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "Thanks. I can help with that. First, please tell me your member ID.\n\n"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM1001"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-b777fafb-3e6b-4e21-a824-70f87d21249e",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-b777fafb-3e6b-4e21-a824-70f87d21249e",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Member verified successfully.",
+              "success": true
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-9deab4cf-b1e1-4451-bfcf-94602c98779e",
+            "tool": "update_auth_state",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-9deab4cf-b1e1-4451-bfcf-94602c98779e",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": false,
+                "authenticated_member_id": "MEM1001",
+                "member_name": null,
+                "saved": {
+                  "authenticated_member_id": "MEM1001"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated_member_id": "MEM1001"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "Thank you. I have your member ID as MEM1001. Now, what is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "15 April, 1985"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "What is your ZIP code?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "10001"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "And lastly, what are the last 4 digits of your SSN?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1234"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-89d9c1d3-bb3d-4bb6-871c-64748883a9b3",
+            "args": {
+              "dob": "1985-04-15",
+              "last4SSN": "1234",
+              "memberId": "MEM1001",
+              "zipCode": "10001"
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-89d9c1d3-bb3d-4bb6-871c-64748883a9b3",
+            "response": {
+              "code": "AUTHENTICATED",
+              "data": {
+                "email": "john.smith@email.com",
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "phone": "+1-212-555-1001",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Authentication successful.",
+              "success": true
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-0e0a5f6b-682b-4f4e-a021-64a2b7aaab73",
+            "tool": "update_auth_state",
+            "args": {
+              "authenticated": true,
+              "member_id": "MEM1001",
+              "member_name": "John Smith"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-0e0a5f6b-682b-4f4e-a021-64a2b7aaab73",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": true,
+                "authenticated_member_id": "MEM1001",
+                "member_name": "John Smith",
+                "saved": {
+                  "authenticated": true,
+                  "authenticated_member_id": "MEM1001",
+                  "member_name": "John Smith"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated": true,
+            "member_name": "John Smith"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "Thank you, your identity has been verified successfully. Please hold while I transfer you to the specialist who can help with benefits."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Eligibility and Benefits Journey Agent",
+            "displayName": "Eligibility and Benefits Journey Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "What benefits would you like to check."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "coverage"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Eligibility and Benefits Journey Agent",
+            "chunks": [{
+              "text": "Could you please specify what type of coverage you\u0027re asking about? For example, dental, vision, or another service?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "dental"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-34d6ed73-05d9-49c7-a042-eb7b7885f77c",
+            "args": {
+              "memberId": "MEM1001"
+            },
+            "displayName": "get_benefits",
+            "toolsetTool": {
+              "toolset": "get_benefits",
+              "toolId": "get_benefits"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-34d6ed73-05d9-49c7-a042-eb7b7885f77c",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "copay": 20.0,
+                "deductible": 500.0,
+                "dental": "Covered",
+                "medical": "Covered",
+                "memberId": "MEM1001",
+                "outOfPocket": 3000.0,
+                "vision": "Covered"
+              },
+              "message": "Benefits retrieved successfully.",
+              "success": true
+            },
+            "displayName": "get_benefits",
+            "toolsetTool": {
+              "toolset": "get_benefits",
+              "toolId": "get_benefits"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "Yes, your dental benefits are covered. Is there anything else about your eligibility, benefits, or policy I can help with?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Eligibility and Benefits Journey Agent",
+            "chunks": [{
+              "text": "Is there anything I can help you with regarding claims, provider information, or preauthorization?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Eligibility and Benefits Journey Agent",
+            "chunks": [{
+              "text": "Okay. Thank you for calling. Take care and goodbye."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "bye"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-8865572f-cb9b-4ddf-9bde-103873035f1b",
+            "tool": "end_session",
+            "args": {
+              "params": {
+              },
+              "reason": "user_ended_call",
+              "session_escalated": false
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-8865572f-cb9b-4ddf-9bde-103873035f1b",
+            "tool": "end_session",
+            "response": {
+            }
+          }
+        }
+      }]
+    }]
+  }
+}

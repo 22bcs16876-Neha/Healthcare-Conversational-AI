@@ -1,0 +1,11 @@
+{
+  "name": "40bf85cf-2205-473c-8151-3e842c034aa1",
+  "displayName": "get_claim_status_member",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/get_claim_status_member/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

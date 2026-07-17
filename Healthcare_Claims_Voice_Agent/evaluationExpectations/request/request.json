@@ -1,0 +1,7 @@
+{
+  "name": "17f70fd5-9ad5-4f6b-bd09-af0d72ffc767",
+  "displayName": "request",
+  "llmCriteria": {
+    "prompt": "Did the agent then handle the claim status request, verify identity, and return the status?"
+  }
+}

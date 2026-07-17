@@ -1,0 +1,245 @@
+{
+  "name": "d268ce67-975a-4f2b-bf0d-c71c0bdf59e1",
+  "displayName": "G-12-Saying No to consent",
+  "tags": ["Golden_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "Hi "
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "I want to check my claim status"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-60e989fc-5fab-40af-b4c7-e22054c855d7",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-60e989fc-5fab-40af-b4c7-e22054c855d7",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "requested_intent": "claim_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-28c12ca5-a83b-4674-af5d-6e6801d56994",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "declined",
+              "increment_consent_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_attempts": 1.0,
+            "consent_status": "declined"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-28c12ca5-a83b-4674-af5d-6e6801d56994",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 1.0,
+                "consent_status": "declined",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "consent_attempts": 1.0,
+                  "consent_status": "declined"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "I understand, but I need your consent to access your healthcare information. Would you like to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-08f6f9fa-92e8-47b5-a28c-3474fc82bb45",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "declined",
+              "increment_consent_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_attempts": 2.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-08f6f9fa-92e8-47b5-a28c-3474fc82bb45",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 2.0,
+                "consent_status": "declined",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "consent_attempts": 2.0,
+                  "consent_status": "declined"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "I understand, but I need your consent to access your healthcare information. Would you like to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-a4e6fb1a-b3fe-43f7-9dc7-ee028ae2d2ff",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "declined",
+              "increment_consent_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_attempts": 3.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-a4e6fb1a-b3fe-43f7-9dc7-ee028ae2d2ff",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 3.0,
+                "consent_status": "declined",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "consent_attempts": 3.0,
+                  "consent_status": "declined"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Human Escalation Agent",
+            "displayName": "Human Escalation Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Human Escalation Agent",
+            "chunks": [{
+              "text": "Thank you for your patience. I\u0027m connecting you with a representative who can help you further. Please stay on the line and someone will be with you shortly."
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

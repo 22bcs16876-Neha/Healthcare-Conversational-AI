@@ -1,0 +1,11 @@
+{
+  "name": "1bad2b9e-8124-4d99-85ff-e4c76c1816d7",
+  "displayName": "cancel_claim",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/cancel_claim/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

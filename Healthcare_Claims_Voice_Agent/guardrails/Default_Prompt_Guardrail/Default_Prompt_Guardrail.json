@@ -1,0 +1,16 @@
+{
+  "name": "4b7990eb-7911-4329-bef7-da6b8ff5d486",
+  "displayName": "Default Prompt Guardrail",
+  "action": {
+    "respondImmediately": {
+      "responses": [{
+        "text": "I can\u0027t help with that. Please try rephrasing."
+      }]
+    }
+  },
+  "llmPromptSecurity": {
+    "defaultSettings": {
+    },
+    "failOpen": true
+  }
+}

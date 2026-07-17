@@ -1,0 +1,427 @@
+{
+  "name": "daec6605-e877-4e85-a333-4aa83422ab93",
+  "displayName": "G-009 – Provider Search Journey(2)",
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hi"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "provider look up"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-f4c61b88-7b69-4aa3-aa6c-c51a8edb564f",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "provider_lookup"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "provider_lookup"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-f4c61b88-7b69-4aa3-aa6c-c51a8edb564f",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "provider_lookup",
+                "saved": {
+                  "requested_intent": "provider_lookup"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yes"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-63aa3f73-6d60-4c8c-befa-559422147930",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-63aa3f73-6d60-4c8c-befa-559422147930",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "provider_lookup",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Please tell me your member ID."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "mem1001"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-9cf0edbb-f1c2-427b-900e-718b20f435fd",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-9cf0edbb-f1c2-427b-900e-718b20f435fd",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Member verified successfully.",
+              "success": true
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "What is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1985-04-15"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Could you please provide your 5-digit ZIP code?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "10001"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "And lastly, please provide the last 4 digits of your SSN."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1234"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-a40c9082-d772-43a2-85d0-32002c36d895",
+            "args": {
+              "dob": "1985-04-15",
+              "last4SSN": "1234",
+              "memberId": "MEM1001",
+              "zipCode": "10001"
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-a40c9082-d772-43a2-85d0-32002c36d895",
+            "response": {
+              "code": "AUTHENTICATED",
+              "data": {
+                "email": "john.smith@email.com",
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "phone": "+1-212-555-1001",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Authentication successful.",
+              "success": true
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-8524d694-e6e2-4b93-be16-a1a36a4ad367",
+            "tool": "update_auth_state",
+            "args": {
+              "authenticated": true,
+              "member_id": "MEM1001",
+              "member_name": "John Smith"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated": true,
+            "authenticated_member_id": "MEM1001",
+            "member_name": "John Smith"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-8524d694-e6e2-4b93-be16-a1a36a4ad367",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": true,
+                "authenticated_member_id": "MEM1001",
+                "member_name": "John Smith",
+                "saved": {
+                  "authenticated": true,
+                  "authenticated_member_id": "MEM1001",
+                  "member_name": "John Smith"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Thank you, your identity has been verified successfully. Let me connect you with a specialist who can help with your provider look up."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Provider and PreAuthorization Journey Agent",
+            "displayName": "Provider and PreAuthorization Journey Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-ed3034ba-057c-406e-9ed7-b9b61bb81568",
+            "args": {
+              "memberId": "MEM1001"
+            },
+            "displayName": "provider_lookup",
+            "toolsetTool": {
+              "toolset": "provider_lookup",
+              "toolId": "provider_lookup"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-ed3034ba-057c-406e-9ed7-b9b61bb81568",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "acceptingNewPatients": true,
+                "address": "123 Main Street",
+                "city": "New York",
+                "distance": "2.5 miles",
+                "email": "contact@citymedical.com",
+                "memberId": "MEM1001",
+                "network": "In Network",
+                "npi": "1234567893",
+                "officeHours": "Mon-Fri 09:00 AM - 05:00 PM",
+                "phone": "+1-212-555-7001",
+                "providerId": "PR1001",
+                "providerName": "City Medical Center",
+                "providerNameLower": "city medical center",
+                "speciality": "Primary Care",
+                "state": "NY",
+                "website": "https://citymedical.com",
+                "zipCode": "10001"
+              },
+              "message": "Provider retrieved successfully.",
+              "success": true
+            },
+            "displayName": "provider_lookup",
+            "toolsetTool": {
+              "toolset": "provider_lookup",
+              "toolId": "provider_lookup"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Provider and PreAuthorization Journey Agent",
+            "chunks": [{
+              "text": "I can see that your provider is City Medical Center, located at 123 Main Street. Is there anything else about providers or preauthorization I can help with?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Provider and PreAuthorization Journey Agent",
+            "chunks": [{
+              "text": "And is there anything I can help you with regarding claims, eligibility, or benefits?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Provider and PreAuthorization Journey Agent",
+            "chunks": [{
+              "text": "Okay. Thank you for calling. Take care and goodbye."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "bye"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-f7aaacfa-fdf7-4ad0-bf91-f3eb85fa44a7",
+            "tool": "end_session",
+            "args": {
+              "params": {
+              },
+              "reason": "user_ended_call",
+              "session_escalated": false
+            },
+            "displayName": "end_session"
+          }
+        }
+      }]
+    }]
+  }
+}

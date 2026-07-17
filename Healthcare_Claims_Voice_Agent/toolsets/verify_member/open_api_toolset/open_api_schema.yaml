@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Verify Member
+  version: "1.0.0"
+servers:
+  - url: $env_var
+paths:
+  /authentication/member/{member_id}:
+    get:
+      operationId: verify_member
+      summary: Verify Member Exists
+      description: Checks whether a member ID exists, used to validate the member ID before collecting the other credentials.
+      parameters:
+        - name: member_id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: MEM1001
+      responses:
+        "200":
+          description: >
+            Returns success true with member data if found, or success false with
+            code MEMBER_NOT_FOUND if not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      memberId:
+                        type: string
+                      memberName:
+                        type: string
+                      plan:
+                        type: string
+                      policyNumber:
+                        type: string

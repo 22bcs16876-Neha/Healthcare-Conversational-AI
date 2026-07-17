@@ -1,0 +1,7 @@
+{
+  "name": "135188a2-b90c-403d-adb8-9004bc972f5e",
+  "displayName": "end",
+  "llmCriteria": {
+    "prompt": "After the caller said they did not need anything else, did the agent say goodbye and end the session without asking another follow-up question?"
+  }
+}

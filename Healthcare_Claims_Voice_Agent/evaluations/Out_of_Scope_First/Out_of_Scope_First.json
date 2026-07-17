@@ -1,0 +1,17 @@
+{
+  "name": "aeaea70e-0a26-4fc5-b9b5-73d65437650c",
+  "displayName": "Out of Scope First",
+  "scenario": {
+    "task": "Ask about the weather.",
+    "userFacts": [{
+      "name": "timeframe",
+      "value": "today"
+    }],
+    "maxTurns": 10,
+    "variableOverrides": {
+    },
+    "taskCompletionBehavior": "TASK_REJECTED",
+    "userGoalBehavior": "USER_GOAL_REJECTED",
+    "evaluationExpectations": ["Unsupported request declined"]
+  }
+}

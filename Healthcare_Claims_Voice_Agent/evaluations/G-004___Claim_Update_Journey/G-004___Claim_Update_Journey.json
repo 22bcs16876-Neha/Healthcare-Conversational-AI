@@ -1,0 +1,479 @@
+{
+  "name": "5a5d4beb-eada-432e-9cc3-5deeef81e099",
+  "displayName": "G-004 – Claim Update Journey",
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hello"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "I want to update my claim."
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-cabdada0-bc30-48b4-be2b-370b398b60f6",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_update"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_update"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-cabdada0-bc30-48b4-be2b-370b398b60f6",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_update",
+                "saved": {
+                  "requested_intent": "claim_update"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "Yes"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-8975c1aa-52a8-4028-b99f-774860426f36",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-8975c1aa-52a8-4028-b99f-774860426f36",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_update",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Please tell me your member ID."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM1001"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-fc929e82-9e50-4e16-8b0c-3498149646d8",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-fc929e82-9e50-4e16-8b0c-3498149646d8",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Member verified successfully.",
+              "success": true
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "What is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "April 15, 1985"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "And what is your ZIP code?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "10001"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Thank you. Finally, please tell me the last four digits of your social security number."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1234"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-b14137d7-eb8a-490a-8b43-e3a2a3848a49",
+            "args": {
+              "dob": "1985-04-15",
+              "last4SSN": "1234",
+              "memberId": "MEM1001",
+              "zipCode": "10001"
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-b14137d7-eb8a-490a-8b43-e3a2a3848a49",
+            "response": {
+              "code": "AUTHENTICATED",
+              "data": {
+                "email": "john.smith@email.com",
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "phone": "+1-212-555-1001",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Authentication successful.",
+              "success": true
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-acde4244-08d5-4488-9e15-145442306a9b",
+            "tool": "update_auth_state",
+            "args": {
+              "authenticated": true,
+              "member_id": "MEM1001",
+              "member_name": "John Smith"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated": true,
+            "authenticated_member_id": "MEM1001",
+            "member_name": "John Smith"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-acde4244-08d5-4488-9e15-145442306a9b",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": true,
+                "authenticated_member_id": "MEM1001",
+                "member_name": "John Smith",
+                "saved": {
+                  "authenticated": true,
+                  "authenticated_member_id": "MEM1001",
+                  "member_name": "John Smith"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Thank you, your identity has been verified successfully. I will connect you to a specialist who can help with your claim. Please hold while I transfer you."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Root agent",
+            "displayName": "Root agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Claims Journey Agent",
+            "displayName": "Claims Journey Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Claims Journey Agent",
+            "chunks": [{
+              "text": "I can help with that. What is the Claim ID you would like to update?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "CLM78901"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Claims Journey Agent",
+            "chunks": [{
+              "text": "Sure, what would you like to change?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yes"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Claims Journey Agent",
+            "chunks": [{
+              "text": "\"To confirm, would you like to end the call?\""
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "I\u0027d like to update the claim amount to $3,000."
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Claims Journey Agent",
+            "chunks": [{
+              "text": "Okay, I can update the amount to $3,000. To confirm, update claim CLM78901 with an amount of $3,000. Should I proceed?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yes"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-e254ae06-2cf9-4a6c-80b1-c22d237ba8b6",
+            "args": {
+              "amount": 3000.0,
+              "claim_id": "CLM78901"
+            },
+            "displayName": "update_claim",
+            "toolsetTool": {
+              "toolset": "update_claim",
+              "toolId": "update_claim"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-e254ae06-2cf9-4a6c-80b1-c22d237ba8b6",
+            "response": {
+              "error": "Error fetching from URL - {detail\u003d[{type\u003dmissing, loc\u003d[body, memberId], msg\u003dField required, input\u003d{amount\u003d3000.0}}, {type\u003dmissing, loc\u003d[body, claimType], msg\u003dField required, input\u003d{amount\u003d3000.0}}, {type\u003dmissing, loc\u003d[body, provider], msg\u003dField required, input\u003d{amount\u003d3000.0}}, {type\u003dmissing, loc\u003d[body, serviceDate], msg\u003dField required, input\u003d{amount\u003d3000.0}}, {type\u003dmissing, loc\u003d[body, diagnosisCode], msg\u003dField required, input\u003d{amount\u003d3000.0}}]}",
+              "errorCode": "FAILED_PRECONDITION",
+              "status": "error"
+            },
+            "displayName": "update_claim",
+            "toolsetTool": {
+              "toolset": "update_claim",
+              "toolId": "update_claim"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Claims Journey Agent",
+            "chunks": [{
+              "text": "I\u0027m sorry, I\u0027m having trouble completing that update right now. Let me connect you to a team member who can assist you further. Please hold while I transfer you."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Root agent",
+            "displayName": "Root agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Human Escalation Agent",
+            "displayName": "Human Escalation Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Human Escalation Agent",
+            "chunks": [{
+              "text": "Thank you for your patience. I\u0027m connecting you with a representative who can help you further. Please stay on the line and someone will be with you shortly."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "sure"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Human Escalation Agent",
+            "chunks": [{
+              "text": "Please stay on the line and a representative will be with you shortly."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "ok"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Human Escalation Agent",
+            "chunks": [{
+              "text": "Please stay on the line, a representative will be with you shortly."
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

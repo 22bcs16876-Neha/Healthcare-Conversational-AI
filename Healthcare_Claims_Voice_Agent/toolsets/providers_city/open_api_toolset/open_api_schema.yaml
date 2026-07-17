@@ -1,0 +1,24 @@
+openapi: 3.0.1
+info:
+  title: Providers by City
+  version: 1.0.0
+servers:
+- url: $env_var
+paths:
+  /providers/city/{city}:
+    get:
+      operationId: providers_by_city
+      summary: Providers by City
+      description: Returns providers in the given city.
+      parameters:
+      - name: city
+        in: path
+        required: true
+        schema:
+          type: string
+        example: New York
+      responses:
+        '200':
+          description: Providers in the city.
+        '404':
+          description: No providers found.

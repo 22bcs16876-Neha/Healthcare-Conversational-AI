@@ -1,0 +1,7 @@
+{
+  "name": "4230d81e-ddf1-4b70-b441-b7740497f3ed",
+  "displayName": "Claim status flow completed",
+  "llmCriteria": {
+    "prompt": "Did the agent obtain consent, verify the caller\u0027s identity, and then retrieve and share their claim status?"
+  }
+}

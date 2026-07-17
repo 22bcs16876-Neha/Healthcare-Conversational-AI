@@ -1,0 +1,7 @@
+{
+  "name": "77f7cde7-24ee-4fa7-93f3-0df85e511e70",
+  "displayName": "cancel",
+  "llmCriteria": {
+    "prompt": "When the caller gave a wrong Claim ID, did the agent ask for confirmation before cancelling, then report that the claim could not be found without wrongly claiming it was cancelled?"
+  }
+}

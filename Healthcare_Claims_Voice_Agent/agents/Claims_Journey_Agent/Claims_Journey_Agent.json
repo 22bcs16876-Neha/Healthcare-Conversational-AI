@@ -1,0 +1,32 @@
+{
+  "name": "ea8bc4ff-41d8-401b-a3a8-20ac3f52564c",
+  "displayName": "Claims Journey Agent",
+  "instruction": "agents/Claims_Journey_Agent/instruction.txt",
+  "tools": ["end_session", "update_claim_state", "update_roundtrip_state"],
+  "beforeModelCallbacks": [{
+    "pythonCode": "agents/Claims_Journey_Agent/before_model_callbacks/before_model_callbacks_01/python_code.py",
+    "description": "Enforces explicit confirmation before claim cancellation and emits the cancel tool call only after a clear yes."
+  }],
+  "beforeToolCallbacks": [{
+    "pythonCode": "agents/Claims_Journey_Agent/before_tool_callbacks/before_tool_callbacks_01/python_code.py"
+  }],
+  "afterToolCallbacks": [{
+    "pythonCode": "agents/Claims_Journey_Agent/after_tool_callbacks/after_tool_callbacks_01/python_code.py"
+  }],
+  "toolsets": [{
+    "toolset": "cancel_claim",
+    "toolIds": ["cancel_claim"]
+  }, {
+    "toolset": "get_claim_history_memberID",
+    "toolIds": ["get_claim_history"]
+  }, {
+    "toolset": "get_claim_status_member",
+    "toolIds": ["get_claim_status"]
+  }, {
+    "toolset": "submit_claim",
+    "toolIds": ["submit_claim"]
+  }, {
+    "toolset": "update_claim",
+    "toolIds": ["update_claim"]
+  }]
+}

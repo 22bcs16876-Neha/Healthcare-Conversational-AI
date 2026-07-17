@@ -1,0 +1,29 @@
+openapi: 3.0.1
+info:
+  title: Get Pre-Authorization
+  version: 1.0.0
+servers:
+- url: $env_var
+paths:
+  /preauthorization/:
+    post:
+      operationId: get_preauthorization
+      summary: Get Pre-Authorization
+      description: Returns the preauthorization details for the authenticated member.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - memberId
+              properties:
+                memberId:
+                  type: string
+                  example: MEM1001
+      responses:
+        '200':
+          description: Pre-authorization details returned.
+        '404':
+          description: No preauthorization found for this member.

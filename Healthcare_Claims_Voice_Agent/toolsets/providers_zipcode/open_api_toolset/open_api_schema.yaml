@@ -1,0 +1,24 @@
+openapi: 3.0.1
+info:
+  title: Providers by ZIP Code
+  version: 1.0.0
+servers:
+- url: $env_var
+paths:
+  /providers/zipcode/{zip_code}:
+    get:
+      operationId: providers_by_zipcode
+      summary: Providers by ZIP Code
+      description: Returns providers in the given ZIP code.
+      parameters:
+      - name: zip_code
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '10001'
+      responses:
+        '200':
+          description: Providers in the ZIP code.
+        '404':
+          description: No providers found.

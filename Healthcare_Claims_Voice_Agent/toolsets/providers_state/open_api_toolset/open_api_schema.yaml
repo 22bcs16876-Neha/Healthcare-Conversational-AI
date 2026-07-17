@@ -1,0 +1,24 @@
+openapi: 3.0.1
+info:
+  title: Providers by State
+  version: 1.0.0
+servers:
+- url: $env_var
+paths:
+  /providers/network/{state}:
+    get:
+      operationId: providers_by_state
+      summary: Providers by State
+      description: Returns providers in the given state.
+      parameters:
+      - name: state
+        in: path
+        required: true
+        schema:
+          type: string
+        example: NY
+      responses:
+        '200':
+          description: Providers in the state.
+        '404':
+          description: No providers found.

@@ -1,0 +1,7 @@
+{
+  "name": "b04113fb-507f-4d0b-8358-1fb3ac8cbabc",
+  "displayName": "Benefits retrieved after consent",
+  "llmCriteria": {
+    "prompt": "Did the agent obtain consent, verify the caller\u0027s identity, transfer to the Eligibility and Benefits agent, and retrieve the caller\u0027s benefits information?"
+  }
+}

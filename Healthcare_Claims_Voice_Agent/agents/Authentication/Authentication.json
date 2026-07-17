@@ -1,0 +1,13 @@
+{
+  "name": "35391e97-010d-432c-a96a-b2523718ef7e",
+  "displayName": "Authentication",
+  "instruction": "agents/Authentication/instruction.txt",
+  "tools": ["end_session", "update_auth_state"],
+  "toolsets": [{
+    "toolset": "authenticate_member",
+    "toolIds": ["authenticate_member"]
+  }, {
+    "toolset": "verify_member",
+    "toolIds": ["verify_member"]
+  }]
+}

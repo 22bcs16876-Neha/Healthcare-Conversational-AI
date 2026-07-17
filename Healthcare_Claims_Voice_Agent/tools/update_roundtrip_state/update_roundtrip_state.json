@@ -1,0 +1,10 @@
+{
+  "name": "9f4566bb-5a97-4513-a781-0771b1c94001",
+  "pythonFunction": {
+    "name": "update_roundtrip_state",
+    "pythonCode": "tools/update_roundtrip_state/python_function/python_code.py",
+    "description": "Manages the claim-to-provider round trip for the Healthcare Claims Voice Assistant.\nUse this when a caller is submitting a claim but does not know the provider, so they are\nsent to the Provider agent to find one and then returned to Claims to finish the submission.\n\nCall this tool:\n- In Claims, before sending the caller to the Provider agent: pass pending_claim_details\n  (a short text summary of the claim type, service date, diagnosis code, and amount that\n  have already been collected) and set awaiting_provider \u003d true.\n- In the Provider agent, once the caller picks a provider: pass pending_provider with the\n  chosen provider\u0027s name.\n- In Claims, after the claim is submitted: set clear_roundtrip \u003d true to reset this state.\n\nArgs:\n    pending_claim_details: A short text summary of the already-collected claim details.\n        Leave empty to not change it.\n    pending_provider: The chosen provider name. Leave empty to not change it.\n    awaiting_provider: True when a claim is waiting for a provider to be found.\n    clear_roundtrip: True to clear all round-trip state after the claim is submitted.\n\nReturns:\n    A dictionary with the current round-trip state."
+  },
+  "executionType": "SYNCHRONOUS",
+  "displayName": "update_roundtrip_state"
+}

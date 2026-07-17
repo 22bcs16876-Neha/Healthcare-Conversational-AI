@@ -1,0 +1,385 @@
+{
+  "name": "f1637845-9e2b-4dca-b43c-6cc115778a8f",
+  "displayName": "N-013 – Verify Benefits Request for Member Without Benefits Record",
+  "tags": ["Negative_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "HELLO, I WANYT TO CHECK MY ELIGIBILITY "
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-a324a59b-ea1b-4a10-9cd5-33656ec4c5ac",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "eligibility_check"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "eligibility_check"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-a324a59b-ea1b-4a10-9cd5-33656ec4c5ac",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "eligibility_check",
+                "saved": {
+                  "requested_intent": "eligibility_check"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "YES"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-42c302a7-7379-4903-aaa4-5a3234200452",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-42c302a7-7379-4903-aaa4-5a3234200452",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "eligibility_check",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "I can help with that. First, please tell me your member ID."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM1001"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-2bb2b169-b0d5-494e-bc17-68df0f6932ba",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-2bb2b169-b0d5-494e-bc17-68df0f6932ba",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Member verified successfully.",
+              "success": true
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-5292718c-71d5-46d3-ba83-5e85e8db0720",
+            "tool": "update_auth_state",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated_member_id": "MEM1001"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-5292718c-71d5-46d3-ba83-5e85e8db0720",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": false,
+                "authenticated_member_id": "MEM1001",
+                "member_name": null,
+                "saved": {
+                  "authenticated_member_id": "MEM1001"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Thank you. I have your member ID as MEM1001. Now, what is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1985-04-15"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "And what is your five-digit ZIP code?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "10001"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Great. Finally, please tell me the last 4 digits of your social security number."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1234"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-f2e1277b-157e-4d5b-bc92-81cca8aa52bc",
+            "args": {
+              "dob": "1985-04-15",
+              "last4SSN": "1234",
+              "memberId": "MEM1001",
+              "zipCode": "10001"
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-f2e1277b-157e-4d5b-bc92-81cca8aa52bc",
+            "response": {
+              "code": "AUTHENTICATED",
+              "data": {
+                "email": "john.smith@email.com",
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "phone": "+1-212-555-1001",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Authentication successful.",
+              "success": true
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-c0c0ac2d-68a2-4efc-ba99-cee503b4c70d",
+            "tool": "update_auth_state",
+            "args": {
+              "authenticated": true,
+              "member_id": "MEM1001",
+              "member_name": "John Smith"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated": true,
+            "member_name": "John Smith"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-c0c0ac2d-68a2-4efc-ba99-cee503b4c70d",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 0.0,
+                "authenticated": true,
+                "authenticated_member_id": "MEM1001",
+                "member_name": "John Smith",
+                "saved": {
+                  "authenticated": true,
+                  "authenticated_member_id": "MEM1001",
+                  "member_name": "John Smith"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Thank you, your identity has been verified successfully. Please hold while I transfer you to the Eligibility and Benefits Journey Agent who can help with your request."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Eligibility and Benefits Journey Agent",
+            "displayName": "Eligibility and Benefits Journey Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-5c4785f6-24ad-4418-a93c-9e4da2a63a9d",
+            "args": {
+              "memberId": "MEM1001"
+            },
+            "displayName": "check_eligibility",
+            "toolsetTool": {
+              "toolset": "check_eligibility",
+              "toolId": "check_eligibility"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-5c4785f6-24ad-4418-a93c-9e4da2a63a9d",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "effectiveDate": "2025-01-01",
+                "expirationDate": "2027-12-31",
+                "memberId": "MEM1001",
+                "status": "Active"
+              },
+              "message": "Eligibility retrieved successfully.",
+              "success": true
+            },
+            "displayName": "check_eligibility",
+            "toolsetTool": {
+              "toolset": "check_eligibility",
+              "toolId": "check_eligibility"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Eligibility and Benefits Journey Agent",
+            "chunks": [{
+              "text": "I see that your coverage is currently active. Is there anything else about your eligibility, benefits, or policy I can help with?"
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

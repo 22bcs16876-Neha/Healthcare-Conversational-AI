@@ -1,0 +1,7 @@
+{
+  "name": "b5ef280a-5963-4505-92f3-843f53ecc271",
+  "displayName": "decline",
+  "llmCriteria": {
+    "prompt": "Did the agent politely decline the out-of-scope request on the first attempt without escalating?"
+  }
+}

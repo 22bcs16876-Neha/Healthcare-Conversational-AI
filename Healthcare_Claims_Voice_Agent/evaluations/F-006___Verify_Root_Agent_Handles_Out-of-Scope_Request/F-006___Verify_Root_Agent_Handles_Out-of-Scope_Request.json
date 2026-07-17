@@ -1,0 +1,127 @@
+{
+  "name": "259460aa-9010-4b04-b3b4-b805594e6815",
+  "displayName": "F-006 – Verify Root Agent Handles Out-of-Scope Request",
+  "tags": ["Functional_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hi"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "i want to check weather"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-15a77815-8897-4a79-9a7f-b44566d54962",
+            "tool": "update_root_state",
+            "args": {
+              "increment_outofscope_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-15a77815-8897-4a79-9a7f-b44566d54962",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 1.0,
+                "requested_intent": null,
+                "saved": {
+                  "outofscope_attempts": 1.0
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "outofscope_attempts": 1.0
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "I\u0027m sorry, I can only help with claims, eligibility, benefits, provider, and preauthorization requests. Is there something in those areas I can help with?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "i want to check claim status"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-31f1dd46-3a79-4d1c-bf5f-962e661f1277",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-31f1dd46-3a79-4d1c-bf5f-962e661f1277",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 1.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "requested_intent": "claim_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

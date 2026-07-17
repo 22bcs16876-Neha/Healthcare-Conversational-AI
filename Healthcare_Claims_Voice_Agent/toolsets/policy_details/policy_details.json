@@ -1,0 +1,11 @@
+{
+  "name": "6e0e430d-3f65-4559-a6f8-91ed9df653e0",
+  "displayName": "policy_details",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/policy_details/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

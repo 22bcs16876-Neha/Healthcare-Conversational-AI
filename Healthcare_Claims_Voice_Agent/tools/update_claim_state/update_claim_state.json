@@ -1,0 +1,10 @@
+{
+  "name": "fceacf4a-a87e-49b3-9486-b0742940cb50",
+  "pythonFunction": {
+    "name": "update_claim_state",
+    "pythonCode": "tools/update_claim_state/python_function/python_code.py",
+    "description": "Updates the Claims agent\u0027s session state for the Healthcare Claims Voice Assistant.\nUse this to remember the Claim ID the caller is working with, and to reliably increment\nthe claim retry counter. The counter is incremented in code so it is accurate and does\nnot depend on the model counting turns.\n\nCall this tool:\n- When the caller gives a Claim ID: pass claim_id to remember it.\n- When a claim action fails and should count as a retry (for example a Claim ID was not\n  found): set increment_claim_attempts to true.\n- When starting a fresh successful claim action: set reset_claim_attempts to true.\n\nArgs:\n    claim_id: The Claim ID the caller provided, e.g. \"CLM1001\". Leave empty to not change it.\n    increment_claim_attempts: True to add 1 to the claim retry counter.\n    reset_claim_attempts: True to reset the claim retry counter to 0.\n\nReturns:\n    A dictionary with the current claim_id and claim_attempts count."
+  },
+  "executionType": "SYNCHRONOUS",
+  "displayName": "update_claim_state"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "2dd0a8a9-45a5-47f7-95af-8833129d9f22",
+  "displayName": "ESC-001 – Direct Request for a Human Representative",
+  "tags": ["Escalation_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hello, i want to talk to human representative"
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Human Escalation Agent",
+            "displayName": "Human Escalation Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Human Escalation Agent",
+            "chunks": [{
+              "text": "Thank you for your patience. I\u0027m connecting you with a representative who can help you further. Please stay on the line and someone will be with you shortly."
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

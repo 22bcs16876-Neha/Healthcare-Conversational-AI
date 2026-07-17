@@ -1,0 +1,7 @@
+{
+  "name": "ea54f3c5-28b6-4f69-a7d2-c9e7835755c8",
+  "displayName": "claim status",
+  "llmCriteria": {
+    "prompt": "Did the agent get consent, verify the user, and return the claim status?"
+  }
+}

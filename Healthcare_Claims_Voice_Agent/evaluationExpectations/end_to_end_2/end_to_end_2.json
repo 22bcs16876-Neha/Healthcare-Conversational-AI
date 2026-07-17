@@ -1,0 +1,7 @@
+{
+  "name": "02baf75d-70da-4e4d-8fe9-2e2c25e8110c",
+  "displayName": "end to end 2",
+  "llmCriteria": {
+    "prompt": "After the claim status, did the agent handle the benefits request and then the provider search in the same session, each in turn, without asking for identity again?"
+  }
+}

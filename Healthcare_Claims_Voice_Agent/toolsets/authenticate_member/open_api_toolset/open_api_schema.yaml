@@ -1,0 +1,57 @@
+openapi: 3.0.1
+info:
+  title: Authenticate Member
+  version: "1.0.0"
+servers:
+  - url: $env_var
+paths:
+  /authentication/:
+    post:
+      operationId: authenticate_member
+      summary: Authenticate Member
+      description: Verifies a member's identity and returns their details.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [memberId, dob, zipCode, last4SSN]
+              properties:
+                memberId:
+                  type: string
+                  example: MEM1001
+                dob:
+                  type: string
+                  example: "1985-04-15"
+                zipCode:
+                  type: string
+                  example: "10001"
+                last4SSN:
+                  type: string
+                  example: "1234"
+      responses:
+        "200":
+          description: Authentication result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      memberId:
+                        type: string
+                      memberName:
+                        type: string
+                      plan:
+                        type: string
+                      policyNumber:
+                        type: string

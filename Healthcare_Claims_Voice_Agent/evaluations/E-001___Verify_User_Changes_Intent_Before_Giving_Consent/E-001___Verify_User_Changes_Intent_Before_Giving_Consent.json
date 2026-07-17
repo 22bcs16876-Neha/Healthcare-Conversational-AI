@@ -1,0 +1,112 @@
+{
+  "name": "465dd6b7-77c2-4786-93e8-cdab2b9ceec0",
+  "displayName": "E-001 – Verify User Changes Intent Before Giving Consent",
+  "tags": ["Edge_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "Hello, I want to check my claim status."
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-1405c054-f75c-48be-84e7-c80bc4fa5665",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-1405c054-f75c-48be-84e7-c80bc4fa5665",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "requested_intent": "claim_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "Actually, I want to check my benefits instead."
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-f6afdeb5-bb4b-449b-9716-5627cc660a57",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "benefits_inquiry"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "benefits_inquiry"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-f6afdeb5-bb4b-449b-9716-5627cc660a57",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "benefits_inquiry",
+                "saved": {
+                  "requested_intent": "benefits_inquiry"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "\"Sure, I can help with that. This may involve protected healthcare information. Do I have your consent to continue?\""
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "c67cf8fe-0519-4061-8473-99253bbb802f",
+  "displayName": "preauth",
+  "llmCriteria": {
+    "prompt": "After the provider search, did the agent check the caller\u0027s preauthorization status and return it in the same session, without asking for identity again?"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "e1b33ff3-8d2c-429e-b24b-7aef11d946b2",
+  "displayName": "SC-004 – Out-of-Scope Then Supported",
+  "tags": ["Scenario_Based_Test_Cases"],
+  "scenario": {
+    "task": "You are John Smith. Follow this exactly, no extra questions, one thing at a time. First ask only one out-of-scope question, word for word: \"What\u0027s the weather today?\" After the assistant politely declines, ask to check your claim status and grant consent, then give Member ID MEM1001, date of birth 1985-04-15, ZIP code 10001, last four SSN digits 1234. After you receive your claim status, end. Do not ask any other random questions.",
+    "maxTurns": 50,
+    "variableOverrides": {
+    },
+    "taskCompletionBehavior": "TASK_SATISFIED",
+    "userGoalBehavior": "USER_GOAL_SATISFIED",
+    "evaluationExpectations": ["decline", "request"]
+  }
+}

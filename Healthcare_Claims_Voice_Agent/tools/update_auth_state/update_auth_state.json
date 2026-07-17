@@ -1,0 +1,10 @@
+{
+  "name": "73225957-bf3b-48a5-b249-11b3003dad3d",
+  "pythonFunction": {
+    "name": "update_auth_state",
+    "pythonCode": "tools/update_auth_state/python_function/python_code.py",
+    "description": "Updates the Authentication agent\u0027s session state for the Healthcare Claims Voice Assistant.\nAfter calling the authentication tool, use this to store the verified member details so\nevery later agent can reuse them without asking again, mark the caller as authenticated,\nand reliably increment the failed-attempt counter. The counter is incremented in code so\nit is accurate and does not depend on the model counting turns.\n\nCall this tool:\n- On successful authentication: pass member_id and member_name from the auth response and\n  set authenticated to true.\n- On a failed authentication attempt: set increment_auth_attempts to true.\n\nArgs:\n    member_id: The verified member ID from the auth response (data.memberId), e.g. \"MEM1001\".\n        Leave empty to not change it.\n    member_name: The member\u0027s name from the auth response (data.memberName). Leave empty to\n        not change it.\n    authenticated: True once the caller is verified. Leave false if not setting it.\n    increment_auth_attempts: True to add 1 to the failed authentication counter.\n\nReturns:\n    A dictionary with authenticated_member_id, member_name, authenticated, and auth_attempts."
+  },
+  "executionType": "SYNCHRONOUS",
+  "displayName": "update_auth_state"
+}

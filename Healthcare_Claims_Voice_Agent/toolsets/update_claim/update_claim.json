@@ -1,0 +1,11 @@
+{
+  "name": "e3fdd271-4dad-437c-a711-9c7201f241bf",
+  "displayName": "update_claim",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/update_claim/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "name": "2628c118-1281-41f4-be5b-3289bc8a04f0",
+  "displayName": "G-11-Wrong Intent",
+  "tags": ["Golden_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "Hi "
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "i want to che check weather info"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-1e88c042-7635-4b5e-a2d5-a9e8be6684b4",
+            "tool": "update_root_state",
+            "args": {
+              "increment_outofscope_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "outofscope_attempts": 1.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-1e88c042-7635-4b5e-a2d5-a9e8be6684b4",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 1.0,
+                "requested_intent": null,
+                "saved": {
+                  "outofscope_attempts": 1.0
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "I\u0027m sorry, I can only help with claims, eligibility, benefits, provider, and preauthorization requests. Is there something in those areas I can help with?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "i want to check weather info only "
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-55a82c67-a8fd-4ee3-ba48-8268f9a30a98",
+            "tool": "update_root_state",
+            "args": {
+              "increment_outofscope_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "outofscope_attempts": 2.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-55a82c67-a8fd-4ee3-ba48-8268f9a30a98",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 2.0,
+                "requested_intent": null,
+                "saved": {
+                  "outofscope_attempts": 2.0
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "I\u0027m sorry, I can only help with claims, eligibility, benefits, provider, and preauthorization requests. Is there something in those areas I can help with?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no i want to check weather info only "
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-10449c11-5338-44ea-8b95-08c137f052a2",
+            "tool": "update_root_state",
+            "args": {
+              "increment_outofscope_attempts": true
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "outofscope_attempts": 3.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-10449c11-5338-44ea-8b95-08c137f052a2",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 3.0,
+                "requested_intent": null,
+                "saved": {
+                  "outofscope_attempts": 3.0
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Human Escalation Agent",
+            "displayName": "Human Escalation Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Human Escalation Agent",
+            "chunks": [{
+              "text": "Thank you for your patience. I\u0027m connecting you with a representative who can help you further. Please stay on the line and someone will be with you shortly."
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

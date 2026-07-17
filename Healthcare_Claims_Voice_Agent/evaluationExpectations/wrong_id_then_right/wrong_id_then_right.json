@@ -1,0 +1,7 @@
+{
+  "name": "ae018a41-c3ca-47bd-8dc6-2f496e5db69c",
+  "displayName": "wrong id then right",
+  "llmCriteria": {
+    "prompt": "After the caller gave a valid Claim ID and confirmed, did the agent cancel that claim and confirm the cancellation?"
+  }
+}

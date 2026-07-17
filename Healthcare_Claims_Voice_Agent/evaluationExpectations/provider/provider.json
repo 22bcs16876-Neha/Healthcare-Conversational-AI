@@ -1,0 +1,7 @@
+{
+  "name": "77bdc830-f28c-4cb4-8fc6-e40c3063dbd0",
+  "displayName": "provider",
+  "llmCriteria": {
+    "prompt": "Did the agent get consent, verify the caller\u0027s identity, and return a list of matching providers in the requested location?"
+  }
+}

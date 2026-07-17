@@ -1,0 +1,6 @@
+{
+  "name": "04f318d2-4f75-44c1-bee9-214e0a24fd65",
+  "displayName": "Human Escalation Agent",
+  "instruction": "agents/Human_Escalation_Agent/instruction.txt",
+  "tools": ["end_session"]
+}

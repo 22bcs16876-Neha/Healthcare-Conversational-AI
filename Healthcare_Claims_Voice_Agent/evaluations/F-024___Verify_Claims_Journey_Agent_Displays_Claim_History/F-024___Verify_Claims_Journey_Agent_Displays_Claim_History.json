@@ -1,0 +1,75 @@
+{
+  "name": "f34d6254-f719-4e5c-be1d-e541f01b9674",
+  "displayName": "F-024 – Verify Claims Journey Agent Displays Claim History",
+  "tags": ["Functional_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hello "
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "Hello! Welcome to the Healthcare Claims Voice Assistant. How may I help you today? I can help with claims, eligibility, benefits, and provider information."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "I want to check my claim history "
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-f996c549-dfd2-4d58-a28b-330e11527756",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_history"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_history"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-f996c549-dfd2-4d58-a28b-330e11527756",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_history",
+                "saved": {
+                  "requested_intent": "claim_history"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }]
+  }
+}

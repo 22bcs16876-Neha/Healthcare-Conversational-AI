@@ -1,0 +1,11 @@
+{
+  "name": "f585258a-0864-4e53-b095-78e1835312cb",
+  "displayName": "search_providers",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/search_providers/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

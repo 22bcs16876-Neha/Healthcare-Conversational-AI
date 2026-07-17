@@ -1,0 +1,11 @@
+{
+  "name": "7555852d-ae33-4c7a-a132-bf5b865841f4",
+  "displayName": "check_eligibility",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/check_eligibility/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

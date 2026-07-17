@@ -1,0 +1,11 @@
+{
+  "name": "424a5e66-d16b-42ee-badc-82752756e0d6",
+  "displayName": "providers_zipcode",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/providers_zipcode/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

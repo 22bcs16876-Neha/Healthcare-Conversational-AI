@@ -1,0 +1,16 @@
+{
+  "name": "8f9a4733-2cd6-4e52-b0a7-462a053258b9",
+  "displayName": " No Medical / Legal / Financial Advice",
+  "action": {
+    "respondImmediately": {
+      "responses": [{
+        "text": "I\u0027m sorry, I can only help you with your own account information, not anyone else\u0027s. Is there something I can help you with on your own account?"
+      }]
+    }
+  },
+  "llmPolicy": {
+    "maxConversationMessages": 1,
+    "prompt": "The user is asking for medical, clinical, legal, or financial advice or opinions, rather than for claims, eligibility, benefits, provider, or preauthorization information. For example: \"what treatment should I get\", \"is this diagnosis serious\", \"should I sue\", or \"what should I do about my condition\".",
+    "policyScope": "USER_QUERY"
+  }
+}

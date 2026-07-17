@@ -1,0 +1,524 @@
+{
+  "name": "d4b2bf83-ccb1-416d-a206-9ca53cdac76c",
+  "displayName": "G-010 – Preauthorization Status Journey",
+  "tags": ["Golden_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "HI I want to check my preauthorization status.\n"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-d4aa6c97-ee3f-45f3-a7c3-24d5da214569",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "pre_authorization_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-d4aa6c97-ee3f-45f3-a7c3-24d5da214569",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "pre_authorization_status",
+                "saved": {
+                  "requested_intent": "pre_authorization_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "pre_authorization_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yes"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-043a0e7f-fb07-4b69-89bf-ff833b29c0b5",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-043a0e7f-fb07-4b69-89bf-ff833b29c0b5",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "pre_authorization_status",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "I can help with that. Please tell me your member ID."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM1001"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-c3d525ee-0499-4a97-9ede-cbc730a00414",
+            "args": {
+              "member_id": "MEM1001"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-c3d525ee-0499-4a97-9ede-cbc730a00414",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Member verified successfully.",
+              "success": true
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "What is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1985-04-15"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "Got it. Could you please provide your 5-digit ZIP code?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "10001"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "And last, please tell me the last 4 digits of your SSN."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1235"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-d9c50753-bbfa-4d49-880f-6404d4b8abad",
+            "args": {
+              "dob": "1985-04-15",
+              "last4SSN": "1235",
+              "memberId": "MEM1001",
+              "zipCode": "10001"
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-d9c50753-bbfa-4d49-880f-6404d4b8abad",
+            "response": {
+              "code": "AUTHENTICATION_FAILED",
+              "message": "Authentication failed. Please verify your details.",
+              "success": false
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-e7d50673-72a1-4e11-a181-9de387528a2c",
+            "tool": "update_auth_state",
+            "args": {
+              "increment_auth_attempts": true
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-e7d50673-72a1-4e11-a181-9de387528a2c",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 1.0,
+                "authenticated": false,
+                "authenticated_member_id": null,
+                "member_name": null,
+                "saved": {
+                  "auth_attempts": 1.0
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "auth_attempts": 1.0
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "The information provided could not be verified. Please try again. What is your date of birth?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1234"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "A ZIP code should be 5 digits. Could you please provide your 5-digit ZIP code?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "10001"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "And last, please tell me the last 4 digits of your SSN."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "1234"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-5a798c5e-e25d-4f2d-be08-dab0fa1c5a43",
+            "args": {
+              "dob": "1985-04-15",
+              "last4SSN": "1234",
+              "memberId": "MEM1001",
+              "zipCode": "10001"
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-5a798c5e-e25d-4f2d-be08-dab0fa1c5a43",
+            "response": {
+              "code": "AUTHENTICATED",
+              "data": {
+                "email": "john.smith@email.com",
+                "memberId": "MEM1001",
+                "memberName": "John Smith",
+                "phone": "+1-212-555-1001",
+                "plan": "Gold Plus",
+                "policyNumber": "POL100001"
+              },
+              "message": "Authentication successful.",
+              "success": true
+            },
+            "displayName": "authenticate_member",
+            "toolsetTool": {
+              "toolset": "authenticate_member",
+              "toolId": "authenticate_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-18d5c02e-4622-4521-a24f-fe802f1cac59",
+            "tool": "update_auth_state",
+            "args": {
+              "authenticated": true,
+              "member_id": "MEM1001",
+              "member_name": "John Smith"
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-18d5c02e-4622-4521-a24f-fe802f1cac59",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 1.0,
+                "authenticated": true,
+                "authenticated_member_id": "MEM1001",
+                "member_name": "John Smith",
+                "saved": {
+                  "authenticated": true,
+                  "authenticated_member_id": "MEM1001",
+                  "member_name": "John Smith"
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "authenticated": true,
+            "authenticated_member_id": "MEM1001",
+            "member_name": "John Smith"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "Thank you, your identity has been verified successfully. Let me transfer you to the Provider and PreAuthorization Journey Agent, who can help with your request."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Provider and PreAuthorization Journey Agent",
+            "displayName": "Provider and PreAuthorization Journey Agent"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-b092226b-c8cf-4bb7-a6b4-f292bb538dda",
+            "args": {
+              "memberId": "MEM1001"
+            },
+            "displayName": "get_preauthorization",
+            "toolsetTool": {
+              "toolset": "get_preauthorization",
+              "toolId": "get_preauthorization"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-b092226b-c8cf-4bb7-a6b4-f292bb538dda",
+            "response": {
+              "code": "SUCCESS",
+              "data": {
+                "authorizationId": "PA10001",
+                "memberId": "MEM1001",
+                "procedureCode": "70551",
+                "service": "MRI Scan",
+                "status": "Approved",
+                "validUntil": "2027-01-15"
+              },
+              "message": "Pre-authorization retrieved successfully.",
+              "success": true
+            },
+            "displayName": "get_preauthorization",
+            "toolsetTool": {
+              "toolset": "get_preauthorization",
+              "toolId": "get_preauthorization"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "agent",
+            "chunks": [{
+              "text": "Your pre-authorization for an MRI Scan is approved and is valid until January 15, 2027. Is there anything else about providers or preauthorization I can help with?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Provider and PreAuthorization Journey Agent",
+            "chunks": [{
+              "text": "Understood. Is there anything I can help you with regarding claims, eligibility, or benefits?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "no"
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Provider and PreAuthorization Journey Agent",
+            "chunks": [{
+              "text": "Okay. Thank you for calling. Take care and goodbye."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "bye"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-bd659dfa-d225-4f5b-8f63-f354c2cd1ede",
+            "tool": "end_session",
+            "args": {
+              "params": {
+              },
+              "reason": "user_ended_call",
+              "session_escalated": false
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-bd659dfa-d225-4f5b-8f63-f354c2cd1ede",
+            "tool": "end_session",
+            "response": {
+            }
+          }
+        }
+      }]
+    }]
+  }
+}

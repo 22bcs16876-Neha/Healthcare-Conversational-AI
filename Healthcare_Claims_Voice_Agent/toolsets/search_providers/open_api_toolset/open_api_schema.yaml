@@ -1,0 +1,43 @@
+openapi: 3.0.1
+info:
+  title: Search Providers
+  version: 1.0.0
+servers:
+- url: $env_var
+paths:
+  /providers/search:
+    get:
+      operationId: search_providers
+      summary: Search Providers
+      description: Search for providers by any combination of name, city, state, or
+        ZIP code. All filters are optional; provide at least one.
+      parameters:
+      - name: providerName
+        in: query
+        required: false
+        schema:
+          type: string
+        example: City Medical Center
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+        example: New York
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+        example: NY
+      - name: zipCode
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10001'
+      responses:
+        '200':
+          description: Matching providers.
+        '404':
+          description: No providers found.

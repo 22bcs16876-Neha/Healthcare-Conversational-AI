@@ -1,0 +1,16 @@
+{
+  "name": "ce831366-a68b-4d47-be85-db7a15b54d25",
+  "displayName": "Abusive Text",
+  "action": {
+    "respondImmediately": {
+      "responses": [{
+        "text": "I\u0027m here to help with your healthcare needs. Let\u0027s keep things respectful. What would you like help with regarding claims, eligibility, benefits, policy, provider, or preauthorization?"
+      }]
+    }
+  },
+  "llmPolicy": {
+    "maxConversationMessages": 1,
+    "prompt": "The user is being rude, hostile, or abusive, using profanity, insults, threats, or aggressive language, instead of engaging with a genuine claims, eligibility, benefits, provider, or preauthorization request.",
+    "policyScope": "USER_QUERY"
+  }
+}

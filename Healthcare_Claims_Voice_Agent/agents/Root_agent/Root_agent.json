@@ -1,0 +1,7 @@
+{
+  "name": "38dfe85f-3401-4e5f-95a5-33414ba8d4af",
+  "displayName": "Root agent",
+  "instruction": "agents/Root_agent/instruction.txt",
+  "tools": ["end_session", "update_root_state"],
+  "childAgents": ["Authentication", "Claims Journey Agent", "Eligibility and Benefits Journey Agent", "Human Escalation Agent", "Provider and PreAuthorization Journey Agent"]
+}

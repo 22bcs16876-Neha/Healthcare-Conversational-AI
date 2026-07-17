@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Update Claim
+  version: "1.0.0"
+servers:
+  - url: $env_var
+paths:
+  /claims/{claim_id}:
+    put:
+      operationId: update_claim
+      summary: Update Claim
+      description: Updates an existing claim for the member. Only the fields provided are changed.
+      parameters:
+        - name: claim_id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: CLM1001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [memberId]
+              properties:
+                memberId:
+                  type: string
+                  example: MEM1001
+                claimType:
+                  type: string
+                provider:
+                  type: string
+                serviceDate:
+                  type: string
+                  example: "2024-01-15"
+                diagnosisCode:
+                  type: string
+                amount:
+                  type: number
+      responses:
+        "200":
+          description: Claim updated.
+        "404":
+          description: Claim not found.

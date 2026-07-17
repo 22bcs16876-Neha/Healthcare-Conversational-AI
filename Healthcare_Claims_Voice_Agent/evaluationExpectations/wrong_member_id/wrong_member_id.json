@@ -1,0 +1,7 @@
+{
+  "name": "4c4a49b9-7526-49e1-94bf-fc6cf720b6c7",
+  "displayName": "wrong member id",
+  "llmCriteria": {
+    "prompt": "After three invalid member ID attempts, did the agent stop retrying and hand the caller off to a human representative instead of verifying them?"
+  }
+}

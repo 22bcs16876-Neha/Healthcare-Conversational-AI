@@ -1,0 +1,13 @@
+{
+  "name": "f166f7de-e6e0-49a5-8372-94c4e09df22e",
+  "displayName": "Initial Greeting",
+  "tags": ["Scenario_Based_Test_Cases"],
+  "scenario": {
+    "task": "Say \u0027hello\u0027.",
+    "maxTurns": 10,
+    "variableOverrides": {
+    },
+    "taskCompletionBehavior": "TASK_SATISFIED",
+    "userGoalBehavior": "USER_GOAL_SATISFIED"
+  }
+}

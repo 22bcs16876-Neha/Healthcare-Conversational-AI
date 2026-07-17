@@ -1,0 +1,11 @@
+{
+  "name": "ec816a8e-c378-4f9d-b7aa-2a794fc3c7d6",
+  "displayName": "get_benefits",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/get_benefits/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

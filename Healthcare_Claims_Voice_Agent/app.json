@@ -1,0 +1,147 @@
+{
+  "name": "cb47456c-4525-4f5f-ae95-54b108aeee3f",
+  "displayName": "Healthcare Claims Voice Agent",
+  "rootAgent": "Root agent",
+  "audioProcessingConfig": {
+    "synthesizeSpeechConfigs": {
+      "en-US": {
+      }
+    },
+    "bargeInConfig": {
+      "bargeInAwareness": true
+    },
+    "inactivityTimeout": "10s",
+    "ambientSoundConfig": {
+    }
+  },
+  "loggingSettings": {
+    "redactionConfig": {
+    },
+    "audioRecordingConfig": {
+    },
+    "bigqueryExportSettings": {
+    },
+    "cloudLoggingSettings": {
+      "enableCloudLogging": true
+    },
+    "conversationLoggingSettings": {
+      "retentionWindow": "31536000s"
+    },
+    "evaluationAudioRecordingConfig": {
+    },
+    "metricAnalysisSettings": {
+    }
+  },
+  "guardrails": ["Default Safety Guardrail", "Default Prompt Guardrail", "Abusive Text", "Prompt Injection", " No Medical / Legal / Financial Advice", " No Revealing Internal / Technical Details", "No Accessing Another Person\u0027s Data"],
+  "modelSettings": {
+    "model": "gemini-3.1-flash-live"
+  },
+  "variableDeclarations": [{
+    "name": "auth_attempts",
+    "schema": {
+      "type": "NUMBER"
+    }
+  }, {
+    "name": "authenticated",
+    "schema": {
+      "type": "BOOLEAN"
+    }
+  }, {
+    "name": "authenticated_member_id",
+    "schema": {
+      "type": "STRING"
+    }
+  }, {
+    "name": "awaiting_provider",
+    "schema": {
+      "type": "BOOLEAN"
+    }
+  }, {
+    "name": "claim_attempts",
+    "schema": {
+      "type": "NUMBER"
+    }
+  }, {
+    "name": "claim_id",
+    "schema": {
+      "type": "STRING"
+    }
+  }, {
+    "name": "consent_attempts",
+    "schema": {
+      "type": "NUMBER"
+    }
+  }, {
+    "name": "consent_status",
+    "schema": {
+      "type": "STRING"
+    }
+  }, {
+    "name": "member_name",
+    "schema": {
+      "type": "STRING"
+    }
+  }, {
+    "name": "outofscope_attempts",
+    "schema": {
+      "type": "NUMBER"
+    }
+  }, {
+    "name": "pending_claim_details",
+    "schema": {
+      "type": "STRING"
+    }
+  }, {
+    "name": "pending_provider",
+    "schema": {
+      "type": "STRING"
+    }
+  }, {
+    "name": "requested_intent",
+    "schema": {
+      "type": "STRING"
+    }
+  }, {
+    "name": "unclear_attempts",
+    "schema": {
+      "type": "NUMBER"
+    }
+  }],
+  "globalInstruction": "global_instruction.txt",
+  "languageSettings": {
+    "defaultLanguageCode": "en-US"
+  },
+  "defaultChannelProfile": {
+  },
+  "evaluationMetricsThresholds": {
+    "goldenEvaluationMetricsThresholds": {
+      "toolMatchingSettings": {
+        "extraToolCallBehavior": "FAIL"
+      }
+    },
+    "scenarioHallucinationMetricBehavior": "DISABLED"
+  },
+  "timeZoneSettings": {
+    "timeZone": "America/Los_Angeles"
+  },
+  "toolExecutionMode": "PARALLEL",
+  "evaluationSettings": {
+    "scenarioConversationInitiator": "USER",
+    "goldenEvaluationToolCallBehaviour": "REAL",
+    "scenarioEvaluationToolCallBehaviour": "REAL",
+    "goldenRunMethod": "NAIVE",
+    "metricsConfig": {
+      "scenarioMetricsConfig": {
+      }
+    }
+  },
+  "errorHandlingSettings": {
+    "errorHandlingStrategy": "FALLBACK_RESPONSE",
+    "fallbackResponseConfig": {
+      "maxFallbackAttempts": 3
+    },
+    "endSessionConfig": {
+      "escalateSession": true
+    }
+  }
+}

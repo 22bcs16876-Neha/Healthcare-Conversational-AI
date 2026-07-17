@@ -1,0 +1,7 @@
+{
+  "name": "63d373cb-fcf3-4d61-9335-7f6727fe6b18",
+  "displayName": "Claim status retrieved",
+  "llmCriteria": {
+    "prompt": "Did the agent successfully authenticate the caller and then retrieve their claim status?"
+  }
+}

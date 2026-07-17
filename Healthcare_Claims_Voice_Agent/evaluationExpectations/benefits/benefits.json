@@ -1,0 +1,7 @@
+{
+  "name": "9f39db31-3f6a-4563-a254-cd309426f8d2",
+  "displayName": "benefits",
+  "llmCriteria": {
+    "prompt": "After the claim status, did the agent handle the benefits request in the same session and return the benefits information, without asking for identity again?"
+  }
+}

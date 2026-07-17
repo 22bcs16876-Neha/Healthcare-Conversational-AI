@@ -1,0 +1,16 @@
+{
+  "name": "126427ca-9d35-466f-b95b-4207bd809e93",
+  "displayName": "No Accessing Another Person\u0027s Data",
+  "action": {
+    "respondImmediately": {
+      "responses": [{
+        "text": "I\u0027m sorry, I can only help you with your own account information, not anyone else\u0027s. Is there something I can help you with on your own account?"
+      }]
+    }
+  },
+  "llmPolicy": {
+    "maxConversationMessages": 1,
+    "prompt": "The user is asking about someone else\u0027s information rather than their own, for example another person\u0027s claims, coverage, benefits, provider, or member details, or is trying to act on an account that is not the authenticated member\u0027s own.",
+    "policyScope": "USER_QUERY"
+  }
+}

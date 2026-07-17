@@ -1,0 +1,16 @@
+{
+  "name": "387c804b-0696-43e3-9f47-0f29912fb1da",
+  "displayName": "Eligibility and Benefits Journey Agent",
+  "instruction": "agents/Eligibility_and_Benefits_Journey_Agent/instruction.txt",
+  "tools": ["end_session"],
+  "toolsets": [{
+    "toolset": "check_eligibility",
+    "toolIds": ["check_eligibility"]
+  }, {
+    "toolset": "get_benefits",
+    "toolIds": ["get_benefits"]
+  }, {
+    "toolset": "policy_details",
+    "toolIds": ["get_policy"]
+  }]
+}

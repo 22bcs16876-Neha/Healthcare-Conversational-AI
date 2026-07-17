@@ -1,0 +1,14 @@
+{
+  "name": "511bb60e-ef94-4b3e-8219-682db45e03b5",
+  "displayName": "SC-002 – Provider Search Followed by Preauthorization Check",
+  "tags": ["Scenario_Based_Test_Cases"],
+  "scenario": {
+    "task": "You are John Smith. Ask about one thing at a time and give each answer in a separate turn. Do not add unrelated questions.\n\nFirst, ask only to search for a provider in New York, NY. When asked, grant consent and provide Member ID MEM1001, date of birth 1985-04-15, ZIP code 10001, and last four SSN digits 1234.\n\nAfter you receive the list of providers, ask only to check your preauthorization status.\n\nAfter you receive the preauthorization result, the assistant will ask if there is anything else. Say \"No\". If it asks again about anything else, say \"No\" again. When the assistant says goodbye, the conversation is complete; you do not need to say anything more.",
+    "maxTurns": 30,
+    "variableOverrides": {
+    },
+    "taskCompletionBehavior": "TASK_SATISFIED",
+    "userGoalBehavior": "USER_GOAL_SATISFIED",
+    "evaluationExpectations": ["preauth", "provider"]
+  }
+}

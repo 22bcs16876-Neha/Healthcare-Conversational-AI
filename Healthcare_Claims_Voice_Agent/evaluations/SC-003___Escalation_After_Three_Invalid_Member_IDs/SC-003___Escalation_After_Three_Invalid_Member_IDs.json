@@ -1,0 +1,14 @@
+{
+  "name": "be534229-9245-466b-85dc-cfaa3111abde",
+  "displayName": "SC-003 – Escalation After Three Invalid Member IDs",
+  "tags": ["Scenario_Based_Test_Cases"],
+  "scenario": {
+    "task": "You are a caller who wants to check your claim status. Follow this script exactly and do not improvise or add unrelated questions.\n\nWhen asked, grant consent to continue.\n\nWhen asked for your member ID, give an INVALID one each time and never give a correct one:\n- First time: \"MEM0000\"\n- Second time: \"MEM8888\"\n- Third time: \"MEM9999\"\n\nCooperate politely and keep trying when asked. Do not end the call yourself; let the assistant decide what to do.",
+    "maxTurns": 50,
+    "variableOverrides": {
+    },
+    "taskCompletionBehavior": "TASK_REJECTED",
+    "userGoalBehavior": "USER_GOAL_REJECTED",
+    "evaluationExpectations": ["wrong member id", "verified"]
+  }
+}

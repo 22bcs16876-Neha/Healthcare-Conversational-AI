@@ -1,0 +1,11 @@
+{
+  "name": "e24bb50c-7f67-4cb7-bf0e-ee129c12a7be",
+  "displayName": "get_claim_history_memberID",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/get_claim_history_memberID/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

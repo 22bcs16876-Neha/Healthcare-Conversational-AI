@@ -1,0 +1,11 @@
+{
+  "name": "997c104f-ff26-4499-a9d8-c9ee702183d5",
+  "displayName": "authenticate_member",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/authenticate_member/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

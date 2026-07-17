@@ -1,0 +1,14 @@
+{
+  "name": "7354d47e-483f-4c86-82d1-efb57dc843cb",
+  "displayName": "SC-005 – Claim Status Followed by Claim History",
+  "tags": ["Scenario_Based_Test_Cases"],
+  "scenario": {
+    "task": "You are John Smith. Ask about one thing at a time and give each answer in a separate turn. Do not add unrelated questions.\n\nFirst, ask only to check your claim status. Do not mention claim history yet. When asked, grant consent and provide Member ID MEM1001, date of birth 1985-04-15, ZIP code 10001, and last four SSN digits 1234.\n\nAfter you receive your claim status, ask to see your claim history.\n\nAfter you receive your claim history, the assistant may ask one or more times if there is anything else. Each time it asks, simply say \"No, thank you.\" When the assistant says goodbye, the conversation is complete and you do not need to say anything more.",
+    "maxTurns": 50,
+    "variableOverrides": {
+    },
+    "taskCompletionBehavior": "TASK_SATISFIED",
+    "userGoalBehavior": "USER_GOAL_SATISFIED",
+    "evaluationExpectations": ["status", "claim history"]
+  }
+}

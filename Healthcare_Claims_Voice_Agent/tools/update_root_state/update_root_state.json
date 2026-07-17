@@ -1,0 +1,10 @@
+{
+  "name": "7dead0e0-f163-41bd-a6dc-bd777e9f9322",
+  "pythonFunction": {
+    "name": "update_root_state",
+    "pythonCode": "tools/update_root_state/python_function/python_code.py",
+    "description": "Updates Root agent session state for the Healthcare Claims Voice Assistant.\nRecords the caller\u0027s intent and consent status, and reliably increments the retry\ncounters for consent declines, out-of-scope requests, and unclear intents. Counters\nare incremented in code so they are accurate and do not depend on the model counting.\n\nArgs:\n    requested_intent: The caller\u0027s supported intent, e.g. \"claim_status\",\n        \"eligibility_check\", \"benefits_inquiry\", \"provider_lookup\". Leave empty to skip.\n    consent_status: \"granted\" or \"declined\". Leave empty to skip.\n    increment_consent_attempts: True to add 1 to the consent decline counter.\n    increment_outofscope_attempts: True to add 1 to the out-of-scope counter.\n    increment_unclear_attempts: True to add 1 to the unclear-intent counter.\n\nReturns:\n    A dictionary with the current intent, consent status, and the three counters."
+  },
+  "executionType": "SYNCHRONOUS",
+  "displayName": "update_root_state"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "d4b40d40-4776-4426-be3e-88524c5bcff1",
+  "displayName": "Consent declined, no access",
+  "llmCriteria": {
+    "prompt": "When the caller declined consent, did the agent stop and NOT proceed with authentication or claim access?"
+  }
+}

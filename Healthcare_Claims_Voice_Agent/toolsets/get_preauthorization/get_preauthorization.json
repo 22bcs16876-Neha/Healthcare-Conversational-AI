@@ -1,0 +1,11 @@
+{
+  "name": "3fb5e1f6-af9a-47e8-b49d-d9051d897bc1",
+  "displayName": "get_preauthorization",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/get_preauthorization/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}

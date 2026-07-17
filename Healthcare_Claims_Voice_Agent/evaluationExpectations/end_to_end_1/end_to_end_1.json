@@ -1,0 +1,7 @@
+{
+  "name": "23809a1d-37fc-4013-ae44-1f70fb1db5c3",
+  "displayName": "end to end 1",
+  "llmCriteria": {
+    "prompt": "Did the agent get consent, verify the caller\u0027s identity once, and return the claim status?"
+  }
+}

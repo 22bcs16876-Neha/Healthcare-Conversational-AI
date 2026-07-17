@@ -1,0 +1,84 @@
+{
+  "toolsets": {
+    "authenticate_member": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "cancel_claim": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "check_eligibility": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "get_benefits": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "get_claim_history_memberID": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "get_claim_status_member": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "get_preauthorization": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "policy_details": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "provider_lookup": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "providers_city": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "providers_state": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "providers_zipcode": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "search_providers": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "submit_claim": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "update_claim": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    },
+    "verify_member": {
+      "openApiToolset": {
+        "url": "https://healthcare-backend-686458672300.us-central1.run.app"
+      }
+    }
+  }
+}

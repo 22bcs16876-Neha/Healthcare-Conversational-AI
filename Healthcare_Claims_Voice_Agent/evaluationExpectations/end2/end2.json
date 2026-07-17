@@ -1,0 +1,7 @@
+{
+  "name": "cd077a48-d530-4e59-93a0-889d22433a87",
+  "displayName": "end2",
+  "llmCriteria": {
+    "prompt": "Did the agent use the caller\u0027s authenticated ZIP code for the \"near me\" provider search without unnecessarily asking for the ZIP code again?"
+  }
+}

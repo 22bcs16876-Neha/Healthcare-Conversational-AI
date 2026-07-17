@@ -1,0 +1,374 @@
+{
+  "name": "2dabe3e1-63d0-480b-b796-0022c00c0dbc",
+  "displayName": "ESC-004 – Verify Escalation After Three Invalid Member ID Attempts",
+  "tags": ["Escalation_Test_Cases"],
+  "golden": {
+    "turns": [{
+      "steps": [{
+        "userInput": {
+          "text": "hello, i want to check claim status"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-061d2ba5-3b70-4ff4-b357-c7c66a3e63f3",
+            "tool": "update_root_state",
+            "args": {
+              "requested_intent": "claim_status"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "requested_intent": "claim_status"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-061d2ba5-3b70-4ff4-b357-c7c66a3e63f3",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": null,
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "requested_intent": "claim_status"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Root agent",
+            "chunks": [{
+              "text": "This may involve protected healthcare information. Do I have your consent to continue?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "yes"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-64d15fb5-5356-4401-aae0-bcdfb8857615",
+            "tool": "update_root_state",
+            "args": {
+              "consent_status": "granted"
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "consent_status": "granted"
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-64d15fb5-5356-4401-aae0-bcdfb8857615",
+            "tool": "update_root_state",
+            "response": {
+              "result": {
+                "consent_attempts": 0.0,
+                "consent_status": "granted",
+                "outofscope_attempts": 0.0,
+                "requested_intent": "claim_status",
+                "saved": {
+                  "consent_status": "granted"
+                },
+                "unclear_attempts": 0.0
+              }
+            },
+            "displayName": "update_root_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentTransfer": {
+            "targetAgent": "Authentication",
+            "displayName": "Authentication"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "I can help with that. First, please tell me your member ID."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM9999"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-089459d4-6732-422b-b2a5-06b60db7a471",
+            "args": {
+              "member_id": "MEM9999"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-089459d4-6732-422b-b2a5-06b60db7a471",
+            "response": {
+              "code": "MEMBER_NOT_FOUND",
+              "message": "Member not found.",
+              "success": false
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-653843a2-c1fd-4ca9-9176-5577d19b51e8",
+            "tool": "update_auth_state",
+            "args": {
+              "increment_auth_attempts": true
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "auth_attempts": 1.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-653843a2-c1fd-4ca9-9176-5577d19b51e8",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 1.0,
+                "authenticated": false,
+                "authenticated_member_id": null,
+                "member_name": null,
+                "saved": {
+                  "auth_attempts": 1.0
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "I couldn\u0027t find that member ID. Please tell me your member ID again."
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM8888"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-290432e0-c044-4b14-bfe5-8a01700085d3",
+            "args": {
+              "member_id": "MEM8888"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-290432e0-c044-4b14-bfe5-8a01700085d3",
+            "response": {
+              "code": "MEMBER_NOT_FOUND",
+              "message": "Member not found.",
+              "success": false
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-615e58c9-385e-4381-b90c-9aa8aec4ead0",
+            "tool": "update_auth_state",
+            "args": {
+              "increment_auth_attempts": true
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "auth_attempts": 2.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-615e58c9-385e-4381-b90c-9aa8aec4ead0",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 2.0,
+                "authenticated": false,
+                "authenticated_member_id": null,
+                "member_name": null,
+                "saved": {
+                  "auth_attempts": 2.0
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "I\u0027m sorry, I still can\u0027t find that member ID. Could you please try again?"
+            }]
+          }
+        }
+      }]
+    }, {
+      "steps": [{
+        "userInput": {
+          "text": "MEM7777"
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-20202d6b-2288-40e0-8360-094f92d16fca",
+            "args": {
+              "member_id": "MEM7777"
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-20202d6b-2288-40e0-8360-094f92d16fca",
+            "response": {
+              "code": "MEMBER_NOT_FOUND",
+              "message": "Member not found.",
+              "success": false
+            },
+            "displayName": "verify_member",
+            "toolsetTool": {
+              "toolset": "verify_member",
+              "toolId": "verify_member"
+            }
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-0e1de4e9-87fd-4707-be1f-7cf9144107a8",
+            "tool": "update_auth_state",
+            "args": {
+              "increment_auth_attempts": true
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "updatedVariables": {
+            "auth_attempts": 3.0
+          }
+        }
+      }, {
+        "expectation": {
+          "toolResponse": {
+            "id": "adk-0e1de4e9-87fd-4707-be1f-7cf9144107a8",
+            "tool": "update_auth_state",
+            "response": {
+              "result": {
+                "auth_attempts": 3.0,
+                "authenticated": false,
+                "authenticated_member_id": null,
+                "member_name": null,
+                "saved": {
+                  "auth_attempts": 3.0
+                }
+              }
+            },
+            "displayName": "update_auth_state"
+          }
+        }
+      }, {
+        "expectation": {
+          "agentResponse": {
+            "role": "Authentication",
+            "chunks": [{
+              "text": "I\u0027m unable to verify your identity after multiple attempts. Let me connect you with a representative."
+            }]
+          }
+        }
+      }, {
+        "expectation": {
+          "toolCall": {
+            "id": "adk-fa53657c-fa51-4aca-a678-deb9db18e95f",
+            "tool": "end_session",
+            "args": {
+              "reason": "multiple failed authentication attempts",
+              "session_escalated": true
+            },
+            "displayName": "end_session"
+          }
+        }
+      }]
+    }]
+  }
+}

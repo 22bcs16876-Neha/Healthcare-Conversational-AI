@@ -1,0 +1,11 @@
+{
+  "name": "75aaf92c-f5f1-403d-abeb-5cb5e584b125",
+  "displayName": "providers_state",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/providers_state/open_api_toolset/open_api_schema.yaml",
+    "apiAuthentication": {
+      "serviceAgentIdTokenAuthConfig": {
+      }
+    }
+  }
+}
