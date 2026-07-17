@@ -1,0 +1,205 @@
+Project Info — Healthcare Claims Voice Agent
+
+1. What This Project Is
+
+Healthcare Claims Voice Agent is a voice-based self-service assistant
+for health-plan members.
+
+Callers talk to the assistant over a phone-style voice channel. It can
+help with everyday healthcare-account tasks such as:
+
+-   Checking claim status or claim history
+-   Submitting, updating, or cancelling a claim
+-   Checking eligibility, benefits, and policy details
+-   Finding providers and checking preauthorization status
+
+If the assistant cannot complete the request safely (for example after
+repeated failures, or if the caller asks for a person), it connects them
+to a human representative.
+
+This project is the voice agent application — the conversation layer
+that greets the caller, verifies identity, routes the request, and
+speaks answers back. The real member and claim records live in a
+separate healthcare backend service.
+
+------------------------------------------------------------------------
+
+2. Problem It Solves
+
+Members often need simple account information without waiting on hold
+for a live agent.
+
+This project aims to:
+
+-   Handle routine requests by voice, in natural language
+-   Protect privacy by requiring consent and identity checks before
+    sharing health information
+-   Keep the experience feeling like one assistant, even when different
+    internal specialists handle different topics
+-   Escalate to a human when automation is not enough
+
+------------------------------------------------------------------------
+
+3. Who Uses It
+
+  -----------------------------------------------------------------------
+  Audience                   How they use it
+  -------------------------- --------------------------------------------
+  Health-plan members        Call in and speak requests (claims,
+                             benefits, providers, etc.)
+
+  Live representatives       Take over when the voice agent escalates
+
+  Engineering / QA teams     Review journeys and run evaluation scenarios
+  -----------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+4. High-Level Architecture (Non-Technical)
+
+Think of the system in three layers:
+
+    Caller (voice)
+          ↓
+    Voice Agent App  ←  THIS PROJECT
+      (listens, understands, verifies, routes, speaks)
+          ↓
+    Healthcare Backend Service (Cloud Run)
+      (stores and returns real member / claim / provider data)
+          ↓
+    Database (behind that backend service)
+
+Layer Roles: - Voice experience: Speech in, speech out, natural
+conversation - Agent / orchestration: Decides what the caller wants,
+gets consent, authenticates, picks the right specialist path -
+Healthcare backend + data store: Source of truth for member, claim,
+eligibility, provider, and preauth records
+
+------------------------------------------------------------------------
+
+5. Frontend Part
+
+There is no traditional website or mobile app UI in this repository.
+
+The “frontend” is the voice interface:
+
+-   The caller speaks
+-   The system listens and understands (speech-to-text)
+-   The assistant replies by speaking (text-to-speech)
+-   Callers can interrupt naturally (barge-in)
+
+From a product view, the frontend is a real-time voice conversation
+powered by Gemini Live.
+
+Typical caller experience: 1. Welcome and offer of help 2. Consent check
+3. Identity verification 4. Spoken answers 5. Option to end the call or
+speak to a human
+
+------------------------------------------------------------------------
+
+6. Backend Part
+
+The backend of this project is the multi-agent conversation system.
+
+Specialists: - Root / Front Desk: Greeting, routing, consent -
+Authentication: Verifies caller identity - Claims: Claim status,
+history, submit, update, cancel - Eligibility & Benefits: Coverage and
+policy information - Provider & Preauthorization: Provider lookup and
+preauth status - Human Escalation: Transfers to a live representative
+
+Supporting features: - Session memory - Safety guardrails - Retry
+limits - Confirmation before sensitive actions
+
+Important distinction: - This repo = conversation brain + routing +
+safety - Cloud Run backend = business APIs + stored records
+
+------------------------------------------------------------------------
+
+7. Databases
+
+This repository does not contain a database.
+
+All member, claim, eligibility, provider, and related information is
+stored in the external healthcare backend.
+
+The voice agent: - Never invents claim or coverage information - Always
+retrieves fresh data from the backend - Stores only temporary session
+information such as consent, authentication state, intent, and retry
+counters
+
+------------------------------------------------------------------------
+
+8. External Services & APIs Used
+
+AI / Voice: - Google Conversational Agents / Agent Development Kit
+(ADK) - Gemini Live - Sessions, tool calling, guardrails, logging,
+evaluations
+
+Healthcare Backend: - Secure Cloud Run healthcare APIs - Member
+authentication - Claims - Eligibility & benefits - Policy details -
+Provider lookup - Preauthorization
+
+Human handoff is supported whenever escalation is required.
+
+------------------------------------------------------------------------
+
+9. Typical Call Flow
+
+1.  Caller states the request.
+2.  Assistant requests consent.
+3.  Assistant verifies identity.
+4.  Assistant retrieves information and responds.
+5.  Assistant asks whether additional help is needed.
+6.  Call ends or transfers to a human representative.
+
+------------------------------------------------------------------------
+
+10. Security & Privacy
+
+-   Consent before accessing protected health information
+-   Identity verification before sharing personal information
+-   Access limited to authenticated member data
+-   Confirmation before sensitive actions
+-   Protection against prompt attacks and unauthorized access
+-   Graceful handling of backend failures
+
+------------------------------------------------------------------------
+
+11. Quality & Testing
+
+Evaluation scenarios include: - Happy-path journeys - Edge cases -
+Invalid inputs - Escalation flows - Security and guardrail testing
+
+------------------------------------------------------------------------
+
+12. Scope
+
+Included: - Voice conversation - Agent routing - Consent and
+authentication - Guardrails - External API integration
+
+Not included: - Healthcare backend implementation - Database
+implementation - Long-term storage - Contact-center infrastructure
+
+------------------------------------------------------------------------
+
+13. Summary
+
+Healthcare Claims Voice Agent is a voice-first healthcare self-service
+application.
+
+Frontend: - Voice conversation powered by Gemini Live
+
+Backend: - Multi-agent orchestration handling requests, authentication,
+routing, responses, and escalation
+
+External APIs: - Cloud Run healthcare backend
+
+Database: - Managed by the external healthcare backend
+
+Goal: Allow members to complete routine healthcare account tasks through
+natural voice conversations while securely escalating to a human
+representative when necessary.
+
+Document purpose: Overall project overview for stakeholders and
+teammates. Refer to BACKEND_ARCHITECTURE.md or complete_doc_ref.html for
+detailed technical architecture.
