@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>United Health Services</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script defer src="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/chat-messenger.js"></script>
+
+<link rel="stylesheet"
+href="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/themes/chat-messenger-default.css">
+
+<link rel="stylesheet"
+href="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/themes/chat-messenger-layout.css">
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:'Poppins',sans-serif;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+background:url("Stethoscope.png") center center/cover no-repeat fixed;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+position:relative;
+
+}
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(
+
+90deg,
+
+rgba(8,28,58,.95),
+
+rgba(8,28,58,.82),
+
+rgba(8,28,58,.58)
+
+);
+
+z-index:0;
+
+}
+
+.container{
+
+position:relative;
+
+z-index:2;
+
+width:92%;
+
+max-width:1400px;
+
+margin:auto;
+
+padding:25px 0;
+
+}
+
+.hero{
+
+display:grid;
+
+grid-template-columns:1.55fr .75fr;
+
+gap:45px;
+
+align-items:flex-start;
+
+min-height:80vh;
+
+}
+
+.left{
+
+padding-top:5px;
+
+}
+
+.brand{
+
+font-size:17px;
+
+font-weight:600;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+color:#70d6ff;
+
+margin-bottom:15px;
+
+}
+
+.left h1{
+
+font-size:46px;
+
+font-weight:700;
+
+line-height:1.15;
+
+color:white;
+
+margin-bottom:16px;
+
+}
+
+.left p{
+
+font-size:17px;
+
+line-height:1.8;
+
+color:#edf4fb;
+
+max-width:720px;
+
+margin-bottom:22px;
+
+}
+
+.ai-button{
+
+background:#0d6efd;
+
+color:white;
+
+padding:15px 32px;
+
+border:none;
+
+border-radius:10px;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+margin-bottom:25px;
+
+}
+
+.ai-button:hover{
+
+background:#0b5ed7;
+
+transform:translateY(-3px);
+
+}
+
+.info-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.10);
+
+backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,.18);
+
+padding:18px;
+
+border-radius:18px;
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+background:rgba(255,255,255,.18);
+
+transform:translateY(-6px);
+
+}
+
+.card h3{
+
+font-size:18px;
+
+color:white;
+
+margin-bottom:8px;
+
+font-weight:600;
+
+}
+
+.card p{
+
+font-size:14px;
+
+line-height:1.55;
+
+color:#dce8f6;
+
+}
+
+.right{
+
+position:relative;
+
+display:flex;
+
+justify-content:flex-end;
+
+}
+/* Chat Panel */
+
+#chatPanel{
+
+position:sticky;
+
+top:20px;
+
+width:340px;
+
+height:450px;
+
+background:white;
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:0 20px 50px rgba(0,0,0,.30);
+
+transform:translateX(380px);
+
+opacity:0;
+
+transition:all .45s ease;
+
+}
+
+#chatPanel.active{
+
+transform:translateX(0);
+
+opacity:1;
+
+}
+
+.chat-header{
+
+height:45px;
+
+background:#0b5cab;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 16px;
+
+color:white;
+
+}
+
+.chat-header h2{
+
+font-size:17px;
+
+font-weight:600;
+
+}
+
+.close-btn{
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:24px;
+
+cursor:pointer;
+
+}
+
+.chat-body{
+
+height:405px;
+
+background:white;
+
+overflow:hidden;
+
+}
+
+footer{
+
+position:relative;
+
+z-index:2;
+
+padding:28px;
+
+text-align:center;
+
+color:white;
+
+font-size:14px;
+
+margin-top:35px;
+
+}
+
+@media(max-width:1100px){
+
+.hero{
+
+grid-template-columns:1fr;
+
+}
+
+.left h1{
+
+font-size:38px;
+
+}
+
+.info-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.right{
+
+justify-content:center;
+
+margin-top:25px;
+
+}
+
+#chatPanel{
+
+position:relative;
+
+top:0;
+
+transform:none;
+
+opacity:1;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<section class="hero">
+
+<div class="left">
+
+<div class="brand">
+
+United Health Services
+
+</div>
+
+<h1>
+
+Smarter Healthcare.<br>
+
+Personalized Support.<br>
+
+Trusted Every Step.
+
+</h1>
+
+<p>
+
+United Health Services provides secure AI-powered healthcare assistance for insurance claims, eligibility verification, provider services and member benefits through natural conversations while protecting sensitive healthcare information.
+
+</p>
+
+<button
+
+class="ai-button"
+
+onclick="openChat()">
+
+Talk to AI Assistant
+
+</button>
+
+<div class="info-grid">
+
+<div class="card">
+
+<h3>
+
+Insurance Claims
+
+</h3>
+
+<p>
+
+Submit new claims, update existing claims, check claim status and review claim history.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Eligibility & Benefits
+
+</h3>
+
+<p>
+
+Verify eligibility, review healthcare coverage and understand member benefits.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Provider Services
+
+</h3>
+
+<p>
+
+Locate providers, hospitals and specialists while managing pre-authorizations.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Secure Authentication
+
+</h3>
+
+<p>
+
+Healthcare information is shared only after successful member authentication.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div id="chatPanel">
+
+<div class="chat-header">
+
+<h2>
+
+United Health Assistant
+
+</h2>
+
+<button
+
+class="close-btn"
+
+onclick="closeChat()">
+
+&times;
+
+</button>
+
+</div>
+
+<div class="chat-body">
+<script>
+
+window.addEventListener("chat-messenger-loaded", () => {
+
+    chatSdk.registerContext(
+
+        chatSdk.prebuilts.ces.createContext({
+
+            deploymentName:
+
+            "projects/exlservic-1770871579440/locations/us/apps/cb47456c-4525-4f5f-ae95-54b108aeee3f/deployments/78e15979-6e7d-4e69-aed0-bea1c724ede8",
+
+            tokenBroker:{
+
+                enableTokenBroker:true,
+
+                enableRecaptcha:false
+
+            }
+
+        })
+
+    );
+
+});
+
+function openChat(){
+
+    document.getElementById("chatPanel").classList.add("active");
+
+}
+
+function closeChat(){
+
+    document.getElementById("chatPanel").classList.remove("active");
+
+}
+
+</script>
+
+<style>
+
+chat-messenger{
+
+display:block;
+
+width:100% !important;
+
+height:100% !important;
+
+position:relative !important;
+
+}
+
+chat-messenger-container{
+
+width:100% !important;
+
+height:405px !important;
+
+border-radius:0 !important;
+
+box-shadow:none !important;
+
+}
+
+</style>
+
+<chat-messenger
+
+url-allowlist="*">
+
+<chat-messenger-container
+
+chat-title="United Health Assistant"
+
+chat-title-icon="https://gstatic.com/dialogflow-console/common/assets/ccai-favicons/conversational_agents.png"
+
+enable-audio-input
+
+enable-file-upload>
+
+<chat-reset-session-button
+
+slot="titlebar-actions"
+
+title-text="Start New Chat">
+
+</chat-reset-session-button>
+
+<chat-toggle-dialog-button
+
+slot="titlebar-actions"
+
+title-text-expanded="Collapse"
+
+title-text-collapsed="Expand">
+
+</chat-toggle-dialog-button>
+
+</chat-messenger-container>
+
+</chat-messenger>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>
+
+United Health Services
+
+</h3>
+
+<p style="max-width:820px;margin:14px auto;line-height:1.8;">
+
+Providing secure, intelligent and personalized healthcare experiences through AI-powered virtual assistance. Members can manage claims, verify eligibility, understand benefits and connect with provider services through a single conversational interface.
+
+</p>
+
+<p style="margin-top:18px;opacity:.8;">
+
+© 2026 United Health Services. All Rights Reserved.
+
+</p>
+
+</footer>
+
+</div>
+
+</body>
+
+</html>
