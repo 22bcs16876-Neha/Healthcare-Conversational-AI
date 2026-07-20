@@ -95,7 +95,7 @@ Working on this project helped me gain practical experience with:
 - API integration
 - Google Conversational Agents
 - Gemini Live
-- Building secure and scalable AI applications
+- Building secure and scalable AI applications 
 
 ---
 
